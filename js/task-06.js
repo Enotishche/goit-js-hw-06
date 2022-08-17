@@ -1,21 +1,20 @@
 const inputRef = document.querySelector('#validation-input');
-const dataLength = inputRef.getAttribute('data-length');
+const dataLength = +inputRef.dataset.length;
 console.log(dataLength);
 
-const onInputFocus = () => { console.log('click') };
-const onInputBlur = (event) => {
-    if (event.target.value.length === Number(dataLength)) {
+function onInputFocus(event) {
+    if (event.currentTarget.value.length === dataLength) {
     
-        event.target.classList.add('valid');
-        event.target.classList.remove('invalid');
+        event.currentTarget.classList.add('valid');
+        event.currentTarget.classList.remove('invalid');
         
     } else {
-        event.target.classList.add('invalid');
-        event.target.classList.remove('valid');
+        event.currentTarget.classList.add('invalid');
+        event.currentTarget.classList.remove('valid');
     }
    console.log('event :', event.target.value.length);
 
 };
 
-inputRef.addEventListener('click', onInputFocus);
-    inputRef.addEventListener('click', onInputBlur);
+inputRef.addEventListener('blur', onInputFocus);
+    
